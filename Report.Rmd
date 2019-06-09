@@ -2,65 +2,119 @@
 title: "Report"
 output: html_notebook
 ---
-## Borenstein, p. 109: 
 
-The first step in partitioning the variation is to compute Q, defined as 
+# What is $I^2$?
+
+*The first step in partitioning the variation is to compute Q, defined as* 
 $$
 Q=\sum_{i=1}^{k} W_{i}\left(Y_{i}-M\right)^{2}
 $$
-where Wi is the study weight (1/Vi), Yi is the study effect size, and M is the summary effect and k is the number of studies. In words, we compute the deviation of each effect size from the mean, square it, weight this by the inverse-variance for that study, and sum these values over all studies to yield the weighted sum of squares (WSS), or Q.
-
-The same formula can be written as
+*where Wi is the study weight (1/Vi), Yi is the study effect size, and M is the summary effect and k is the number of studies. In words, we compute the deviation of each effect size from the mean, square it, weight this by the inverse-variance for that study, and sum these values over all studies to yield the weighted sum of squares (WSS), or Q. The same formula can be written as*
 $$
 Q=\sum_{i=1}^{k}\left(\frac{Y_{i}-M}{S_{i}}\right)^{2}
 $$
 
-to highlight the fact that Q is a standardized measure, which means that it is not affected by the metric of the effect size index. The analogy would be to the standardized mean difference d, where the mean difference is divided by the within-study standard deviation.
-
-Finally, an equivalent formula, useful for computations, is
+*to highlight the fact that Q is a standardized measure, which means that it is not affected by the metric of the effect size index. The analogy would be to the standardized mean difference d, where the mean difference is divided by the within-study standard deviation. Finally, an equivalent formula, useful for computations, is*
 $$
 Q=\sum_{i=1}^{k} W_{i} Y_{i}^{2}-\frac{\left(\sum_{i=1}^{k} W_{i} Y_{i}\right)^{2}}{\sum_{i=1}^{k} W_{i}}.
 $$
+(Borenstein, p. 109)
 
 
-## Borenstein, p. 110:
-
-The next step is to determine the expected value of Q on the assumption that all studies share a common effect size, and (it follows) all the variation is due to sampling error within studies. Because Q is a standardized measure the expected value does not depend on the metric of effect size, but is simply the degrees of freedom (df), 
+*The next step is to determine the expected value of Q on the assumption that all studies share a common effect size, and (it follows) all the variation is due to sampling error within studies. Because Q is a standardized measure the expected value does not depend on the metric of effect size, but is simply the degrees of freedom (df), *
 
 $$
 df = k-1,
 $$
-where k is the number of studies.
+*where k is the number of studies.* (Borenstein, p. 110)
 
 
-## Borenstein, p. 111:
+*[T]o estimate what proportion of the observed variance reflects real differences among studies (rather than random error) we will start with Q, remove the dependence on the number of studies, and express the result as a ratio (called $I^2$).* (Borenstein, p. 112)
 
-$$
-I^{2}=\left(Q^{2}-d f\right) / Q
-$$
-
-## Borenstein, p. 112:
-
-[T]o estimate what proportion of the observed variance reflects real differences among studies (rather than random error) we will start with Q, remove the dependence on the number of studies, and express the result as a ratio (called $I^2$).
-
-## Borenstein, p. 117:
-
-What proportion of the observed variance reflects real differences in effect size?
-
-Higgins et al. (2003) proposed using a statistic, $I^2$ , to reflect this proportion, that could serve as a kind of signal-to-noise ratio. It is computed as
-
+*What proportion of the observed variance reflects real differences in effect size? Higgins et al. (2003) proposed using a statistic, $I^2$ , to reflect this proportion, that could serve as a kind of signal-to-noise ratio. It is computed as*
 $$
 I^{2}=\left(\frac{Q-d f}{Q}\right) \times 100 \%
 $$
-
-that is, the ratio of excess dispersion to total dispersion. 
-
-
-## Borenstein, p. 118:
-
-$I^2$ reflects the extent of overlap of confidence intervals, which is not dependent on the actual location or spread of the true effects. As such it is convenient to view $I^2$ as a measure of inconsistency across the findings of the studies, and not as a measure of the real variation across the underlying true effects. The scale of $I^2$ has a range of 0–100%, regardless of the scale used for the metaanalysis itself. It can be interpreted as a ratio, and has the additional advantage of being analogous to indices used in psychometrics (where reliability is the ratio of true to total variance) or regression (where R2 is the proportion of the total variance that can be explained by the covariates). Importantly, $I^2$ is not directly affected by the number of studies in the analysis.
+*that is, the ratio of excess dispersion to total dispersion.* (Borenstein, p. 117)
 
 
-## Borenstein, p. 119:
 
-Higgins et al. (2003) provide some tentative benchmarks for $I^2$ . They suggest that values on the order of 25%, 50%, and 75% might be considered as low, moderate, and high, respectively. Some context for the interpretation of $I^2$ is provided by a survey of meta-analyses of clinical trials in the Cochrane Database of Systematic Reviews, reported by Higgins et al. (2003). The value of $I^2$ was zero for about half of the meta-analyses, and was distributed evenly between 0% to 100% for the other half. It is likely that $I^2$ would be distributed differently in meta-analyses of other fields or other kinds of studies.
+*$I^2$ reflects the extent of overlap of confidence intervals, which is not dependent on the actual location or spread of the true effects. As such it is convenient to view $I^2$ as a measure of inconsistency across the findings of the studies, and not as a measure of the real variation across the underlying true effects. The scale of $I^2$ has a range of 0–100%, regardless of the scale used for the metaanalysis itself. It can be interpreted as a ratio, and has the additional advantage of being analogous to indices used in psychometrics (where reliability is the ratio of true to total variance) or regression (where R2 is the proportion of the total variance that can be explained by the covariates). Importantly, $I^2$ is not directly affected by the number of studies in the analysis.* (Borenstein, p. 118)
+
+...
+
+*Higgins et al. (2003) provide some tentative benchmarks for $I^2$ . They suggest that values on the order of 25%, 50%, and 75% might be considered as low, moderate, and high, respectively. Some context for the interpretation of $I^2$ is provided by a survey of meta-analyses of clinical trials in the Cochrane Database of Systematic Reviews, reported by Higgins et al. (2003). The value of $I^2$ was zero for about half of the meta-analyses, and was distributed evenly between 0% to 100% for the other half. It is likely that $I^2$ would be distributed differently in meta-analyses of other fields or other kinds of studies.* (Borenstein, p. 119)
+
+
+# Comupting $I^2$
+
+Create some data to test equations:
+```{r}
+# Simulate some data
+ES <- rnorm(n = 5, mean = .5, sd = 0.1) #effect size per study
+SE <- runif(n = 5, min = 0, max = 0.05) #standard error per study
+n <- 100
+data <- as.data.frame(cbind(ES, SE)) #combine into dataframe
+
+# Obtain objects necessary for computing I^2:
+Y <- data$ES
+k <- length(Y) #extract nr. of studies
+df <- k-1 #calculate degrees of freedom 
+V <- (data$SE*sqrt(n))^2
+W <- 1/V #create study weights
+M <- mean(Y)
+
+# Compute Q:
+Qa <- sum(W*(Y-M)^2) #first equation in Borenstein
+Qi <- matrix(NA, k, 1) #same with for-loop to check computations
+for (i in 1:k) {
+  Qi[i] <- W[i]*((Y[i]-M)^2)
+}
+Qb <- sum(Qi)
+
+Qc <- sum(W*Y^2)-((sum(W*Y)^2)/sum(W)) #third Borenstein equation
+
+# Compute I^2:
+Q <- Qc #choose which Q computation to use
+I2 <- (Q-df)/Q *100 #get I^2
+
+
+```
+
+Try with real data:
+```{r}
+data <- read.csv2("Conditioning.csv") #load data into environment
+Y <- data$Calculated.effect.size #extract effect size, SE and n per study
+SE <- data$SE.rounded 
+n <- data$Sample.size
+
+k <- length(Y) #extract nr. of studies
+df <- k-1 #calculate degrees of freedom 
+
+SD <- SE*sqrt(n) #calculate SD from SE
+W <- 1/(SD^2) #create study weights (inverse of variance)
+M <- mean(Y)
+
+# Compute Q:
+Qa <- sum(W*(Y-M)^2) #first equation in Borenstein
+Qi <- matrix(NA, k, 1) #same with for-loop to check computations
+for (i in 1:k) {
+  Qi[i] <- W[i]*((Y[i]-M)^2)
+}
+Qb <- sum(Qi)
+
+Qc <- sum(W*Y^2)-((sum(W*Y)^2)/sum(W)) #third Borenstein equation
+
+# Compute I^2:
+Q <- Qc #choose which Q computation to use
+I2 <- (Q-df)/Q*100 #get I^2
+
+# Check with package:
+metafor::rma.uni(yi = Y, vi = 1/W)
+
+# We see that Qc yields a Q value stat is equal to the metafor Q estimate
+```
+
+Source ToM data: https://psyarxiv.com/97yjx/, source conditioning data: https://psyarxiv.com/qz5st/ and https://osf.io/dy4ac/files/?view_only=aecccafd3dd44fefa17cf87aeb8f92ac.
+
+

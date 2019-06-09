@@ -1767,56 +1767,99 @@ $(document).ready(function () {
 
 
 <!-- rnb-text-begin -->
-<div id="borenstein-p.-109" class="section level2">
-<h2>Borenstein, p. 109:</h2>
-<p>The first step in partitioning the variation is to compute Q, defined as <span class="math display">\[
+<div id="what-is-i2" class="section level1">
+<h1>What is <span class="math inline">\(I^2\)</span>?</h1>
+<p><em>The first step in partitioning the variation is to compute Q, defined as</em> <span class="math display">\[
 Q=\sum_{i=1}^{k} W_{i}\left(Y_{i}-M\right)^{2}
-\]</span> where Wi is the study weight (1/Vi), Yi is the study effect size, and M is the summary effect and k is the number of studies. In words, we compute the deviation of each effect size from the mean, square it, weight this by the inverse-variance for that study, and sum these values over all studies to yield the weighted sum of squares (WSS), or Q.</p>
-<p>The same formula can be written as <span class="math display">\[
+\]</span> <em>where Wi is the study weight (1/Vi), Yi is the study effect size, and M is the summary effect and k is the number of studies. In words, we compute the deviation of each effect size from the mean, square it, weight this by the inverse-variance for that study, and sum these values over all studies to yield the weighted sum of squares (WSS), or Q. The same formula can be written as</em> <span class="math display">\[
 Q=\sum_{i=1}^{k}\left(\frac{Y_{i}-M}{S_{i}}\right)^{2}
 \]</span></p>
-<p>to highlight the fact that Q is a standardized measure, which means that it is not affected by the metric of the effect size index. The analogy would be to the standardized mean difference d, where the mean difference is divided by the within-study standard deviation.</p>
-<p>Finally, an equivalent formula, useful for computations, is <span class="math display">\[
+<p><em>to highlight the fact that Q is a standardized measure, which means that it is not affected by the metric of the effect size index. The analogy would be to the standardized mean difference d, where the mean difference is divided by the within-study standard deviation. Finally, an equivalent formula, useful for computations, is</em> <span class="math display">\[
 Q=\sum_{i=1}^{k} W_{i} Y_{i}^{2}-\frac{\left(\sum_{i=1}^{k} W_{i} Y_{i}\right)^{2}}{\sum_{i=1}^{k} W_{i}}.
-\]</span></p>
-</div>
-<div id="borenstein-p.-110" class="section level2">
-<h2>Borenstein, p. 110:</h2>
-<p>The next step is to determine the expected value of Q on the assumption that all studies share a common effect size, and (it follows) all the variation is due to sampling error within studies. Because Q is a standardized measure the expected value does not depend on the metric of effect size, but is simply the degrees of freedom (df),</p>
+\]</span> (Borenstein, p. 109)</p>
+<p><em>The next step is to determine the expected value of Q on the assumption that all studies share a common effect size, and (it follows) all the variation is due to sampling error within studies. Because Q is a standardized measure the expected value does not depend on the metric of effect size, but is simply the degrees of freedom (df), </em></p>
 <p><span class="math display">\[
 df = k-1,
-\]</span> where k is the number of studies.</p>
-</div>
-<div id="borenstein-p.-111" class="section level2">
-<h2>Borenstein, p. 111:</h2>
-<p><span class="math display">\[
-I^{2}=\left(Q^{2}-d f\right) / Q
-\]</span></p>
-</div>
-<div id="borenstein-p.-112" class="section level2">
-<h2>Borenstein, p. 112:</h2>
-<p>[T]o estimate what proportion of the observed variance reflects real differences among studies (rather than random error) we will start with Q, remove the dependence on the number of studies, and express the result as a ratio (called <span class="math inline">\(I^2\)</span>).</p>
-</div>
-<div id="borenstein-p.-117" class="section level2">
-<h2>Borenstein, p. 117:</h2>
-<p>What proportion of the observed variance reflects real differences in effect size?</p>
-<p>Higgins et al. (2003) proposed using a statistic, <span class="math inline">\(I^2\)</span> , to reflect this proportion, that could serve as a kind of signal-to-noise ratio. It is computed as</p>
-<p><span class="math display">\[
+\]</span> <em>where k is the number of studies.</em> (Borenstein, p. 110)</p>
+<p><em>[T]o estimate what proportion of the observed variance reflects real differences among studies (rather than random error) we will start with Q, remove the dependence on the number of studies, and express the result as a ratio (called <span class="math inline">\(I^2\)</span>).</em> (Borenstein, p. 112)</p>
+<p><em>What proportion of the observed variance reflects real differences in effect size? Higgins et al. (2003) proposed using a statistic, <span class="math inline">\(I^2\)</span> , to reflect this proportion, that could serve as a kind of signal-to-noise ratio. It is computed as</em> <span class="math display">\[
 I^{2}=\left(\frac{Q-d f}{Q}\right) \times 100 \%
-\]</span></p>
-<p>that is, the ratio of excess dispersion to total dispersion.</p>
+\]</span> <em>that is, the ratio of excess dispersion to total dispersion.</em> (Borenstein, p. 117)</p>
+<p><em><span class="math inline">\(I^2\)</span> reflects the extent of overlap of confidence intervals, which is not dependent on the actual location or spread of the true effects. As such it is convenient to view <span class="math inline">\(I^2\)</span> as a measure of inconsistency across the findings of the studies, and not as a measure of the real variation across the underlying true effects. The scale of <span class="math inline">\(I^2\)</span> has a range of 0–100%, regardless of the scale used for the metaanalysis itself. It can be interpreted as a ratio, and has the additional advantage of being analogous to indices used in psychometrics (where reliability is the ratio of true to total variance) or regression (where R2 is the proportion of the total variance that can be explained by the covariates). Importantly, <span class="math inline">\(I^2\)</span> is not directly affected by the number of studies in the analysis.</em> (Borenstein, p. 118)</p>
+<p>…</p>
+<p><em>Higgins et al. (2003) provide some tentative benchmarks for <span class="math inline">\(I^2\)</span> . They suggest that values on the order of 25%, 50%, and 75% might be considered as low, moderate, and high, respectively. Some context for the interpretation of <span class="math inline">\(I^2\)</span> is provided by a survey of meta-analyses of clinical trials in the Cochrane Database of Systematic Reviews, reported by Higgins et al. (2003). The value of <span class="math inline">\(I^2\)</span> was zero for about half of the meta-analyses, and was distributed evenly between 0% to 100% for the other half. It is likely that <span class="math inline">\(I^2\)</span> would be distributed differently in meta-analyses of other fields or other kinds of studies.</em> (Borenstein, p. 119)</p>
 </div>
-<div id="borenstein-p.-118" class="section level2">
-<h2>Borenstein, p. 118:</h2>
-<p><span class="math inline">\(I^2\)</span> reflects the extent of overlap of confidence intervals, which is not dependent on the actual location or spread of the true effects. As such it is convenient to view <span class="math inline">\(I^2\)</span> as a measure of inconsistency across the findings of the studies, and not as a measure of the real variation across the underlying true effects. The scale of <span class="math inline">\(I^2\)</span> has a range of 0–100%, regardless of the scale used for the metaanalysis itself. It can be interpreted as a ratio, and has the additional advantage of being analogous to indices used in psychometrics (where reliability is the ratio of true to total variance) or regression (where R2 is the proportion of the total variance that can be explained by the covariates). Importantly, <span class="math inline">\(I^2\)</span> is not directly affected by the number of studies in the analysis.</p>
-</div>
-<div id="borenstein-p.-119" class="section level2">
-<h2>Borenstein, p. 119:</h2>
-<p>Higgins et al. (2003) provide some tentative benchmarks for <span class="math inline">\(I^2\)</span> . They suggest that values on the order of 25%, 50%, and 75% might be considered as low, moderate, and high, respectively. Some context for the interpretation of <span class="math inline">\(I^2\)</span> is provided by a survey of meta-analyses of clinical trials in the Cochrane Database of Systematic Reviews, reported by Higgins et al. (2003). The value of <span class="math inline">\(I^2\)</span> was zero for about half of the meta-analyses, and was distributed evenly between 0% to 100% for the other half. It is likely that <span class="math inline">\(I^2\)</span> would be distributed differently in meta-analyses of other fields or other kinds of studies.</p>
+<div id="comupting-i2" class="section level1">
+<h1>Comupting <span class="math inline">\(I^2\)</span></h1>
+<p>Create some data to test equations:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxuIyBTaW11bGF0ZSBzb21lIGRhdGFcbkVTIDwtIHJub3JtKG4gPSA1LCBtZWFuID0gLjUsIHNkID0gMC4xKSAjZWZmZWN0IHNpemUgcGVyIHN0dWR5XG5TRSA8LSBydW5pZihuID0gNSwgbWluID0gMCwgbWF4ID0gMC4wNSkgI3N0YW5kYXJkIGVycm9yIHBlciBzdHVkeVxubiA8LSAxMDBcbmRhdGEgPC0gYXMuZGF0YS5mcmFtZShjYmluZChFUywgU0UpKSAjY29tYmluZSBpbnRvIGRhdGFmcmFtZVxuXG4jIE9idGFpbiBvYmplY3RzIG5lY2Vzc2FyeSBmb3IgY29tcHV0aW5nIEleMjpcblkgPC0gZGF0YSRFU1xuayA8LSBsZW5ndGgoWSkgI2V4dHJhY3QgbnIuIG9mIHN0dWRpZXNcbmRmIDwtIGstMSAjY2FsY3VsYXRlIGRlZ3JlZXMgb2YgZnJlZWRvbSBcblYgPC0gKGRhdGEkU0Uqc3FydChuKSleMlxuVyA8LSAxL1YgI2NyZWF0ZSBzdHVkeSB3ZWlnaHRzXG5NIDwtIG1lYW4oWSlcblxuIyBDb21wdXRlIFE6XG5RYSA8LSBzdW0oVyooWS1NKV4yKSAjZmlyc3QgZXF1YXRpb24gaW4gQm9yZW5zdGVpblxuUWkgPC0gbWF0cml4KE5BLCBrLCAxKSAjc2FtZSB3aXRoIGZvci1sb29wIHRvIGNoZWNrIGNvbXB1dGF0aW9uc1xuZm9yIChpIGluIDE6aykge1xuICBRaVtpXSA8LSBXW2ldKigoWVtpXS1NKV4yKVxufVxuUWIgPC0gc3VtKFFpKVxuXG5RYyA8LSBzdW0oVypZXjIpLSgoc3VtKFcqWSleMikvc3VtKFcpKSAjdGhpcmQgQm9yZW5zdGVpbiBlcXVhdGlvblxuXG4jIENvbXB1dGUgSV4yOlxuUSA8LSBRYyAjY2hvb3NlIHdoaWNoIFEgY29tcHV0YXRpb24gdG8gdXNlXG5JMiA8LSAoUS1kZikvUSAqMTAwICNnZXQgSV4yXG5cblxuYGBgIn0= -->
+<pre class="r"><code># Simulate some data
+ES &lt;- rnorm(n = 5, mean = .5, sd = 0.1) #effect size per study
+SE &lt;- runif(n = 5, min = 0, max = 0.05) #standard error per study
+n &lt;- 100
+data &lt;- as.data.frame(cbind(ES, SE)) #combine into dataframe
+
+# Obtain objects necessary for computing I^2:
+Y &lt;- data$ES
+k &lt;- length(Y) #extract nr. of studies
+df &lt;- k-1 #calculate degrees of freedom 
+V &lt;- (data$SE*sqrt(n))^2
+W &lt;- 1/V #create study weights
+M &lt;- mean(Y)
+
+# Compute Q:
+Qa &lt;- sum(W*(Y-M)^2) #first equation in Borenstein
+Qi &lt;- matrix(NA, k, 1) #same with for-loop to check computations
+for (i in 1:k) {
+  Qi[i] &lt;- W[i]*((Y[i]-M)^2)
+}
+Qb &lt;- sum(Qi)
+
+Qc &lt;- sum(W*Y^2)-((sum(W*Y)^2)/sum(W)) #third Borenstein equation
+
+# Compute I^2:
+Q &lt;- Qc #choose which Q computation to use
+I2 &lt;- (Q-df)/Q *100 #get I^2
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Try with real data:</p>
+<!-- rnb-text-end -->
+<!-- rnb-chunk-begin -->
+<!-- rnb-source-begin eyJkYXRhIjoiYGBgclxubWV0YWZvcjo6cm1hLnVuaSh5aSA9IFksIHZpID0gMS9XKVxuXG5gYGAifQ== -->
+<pre class="r"><code>metafor::rma.uni(yi = Y, vi = 1/W)
+</code></pre>
+<!-- rnb-source-end -->
+<!-- rnb-output-begin eyJkYXRhIjoiXG5SYW5kb20tRWZmZWN0cyBNb2RlbCAoayA9IDMwOyB0YXVeMiBlc3RpbWF0b3I6IFJFTUwpXG5cbnRhdV4yIChlc3RpbWF0ZWQgYW1vdW50IG9mIHRvdGFsIGhldGVyb2dlbmVpdHkpOiAwLjEyMjQgKFNFID0gMC4wNDE2KVxudGF1IChzcXVhcmUgcm9vdCBvZiBlc3RpbWF0ZWQgdGF1XjIgdmFsdWUpOiAgICAgIDAuMzQ5OVxuSV4yICh0b3RhbCBoZXRlcm9nZW5laXR5IC8gdG90YWwgdmFyaWFiaWxpdHkpOiAgIDg4LjU1JVxuSF4yICh0b3RhbCB2YXJpYWJpbGl0eSAvIHNhbXBsaW5nIHZhcmlhYmlsaXR5KTogIDguNzRcblxuVGVzdCBmb3IgSGV0ZXJvZ2VuZWl0eTpcblEoZGYgPSAyOSkgPSAxNjIuNzA1NSwgcC12YWwgPCAuMDAwMVxuXG5Nb2RlbCBSZXN1bHRzOlxuXG5lc3RpbWF0ZSAgICAgIHNlICAgIHp2YWwgICAgcHZhbCAgIGNpLmxiICAgY2kudWIgXG4gIDAuNTIyOCAgMC4wNzQxICA3LjA1MzQgIDwuMDAwMSAgMC4zNzc1ICAwLjY2ODAgICoqKiBcblxuLS0tXG5TaWduaWYuIGNvZGVzOiAgMCDigJgqKirigJkgMC4wMDEg4oCYKirigJkgMC4wMSDigJgq4oCZIDAuMDUg4oCYLuKAmSAwLjEg4oCYIOKAmSAxXG4ifQ== -->
+<pre><code>
+Random-Effects Model (k = 30; tau^2 estimator: REML)
+
+tau^2 (estimated amount of total heterogeneity): 0.1224 (SE = 0.0416)
+tau (square root of estimated tau^2 value):      0.3499
+I^2 (total heterogeneity / total variability):   88.55%
+H^2 (total variability / sampling variability):  8.74
+
+Test for Heterogeneity:
+Q(df = 29) = 162.7055, p-val &lt; .0001
+
+Model Results:
+
+estimate      se    zval    pval   ci.lb   ci.ub 
+  0.5228  0.0741  7.0534  &lt;.0001  0.3775  0.6680  *** 
+
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1</code></pre>
+<!-- rnb-output-end -->
+<!-- rnb-chunk-end -->
+<!-- rnb-text-begin -->
+<p>Source ToM data: <a href="https://psyarxiv.com/97yjx/" class="uri">https://psyarxiv.com/97yjx/</a>, source conditioning data: <a href="https://psyarxiv.com/qz5st/" class="uri">https://psyarxiv.com/qz5st/</a> and <a href="https://osf.io/dy4ac/files/?view_only=aecccafd3dd44fefa17cf87aeb8f92ac" class="uri">https://osf.io/dy4ac/files/?view_only=aecccafd3dd44fefa17cf87aeb8f92ac</a>.</p>
 <!-- rnb-text-end -->
 </div>
 
-<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJlcG9ydCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQojIyBCb3JlbnN0ZWluLCBwLiAxMDk6IA0KDQpUaGUgZmlyc3Qgc3RlcCBpbiBwYXJ0aXRpb25pbmcgdGhlIHZhcmlhdGlvbiBpcyB0byBjb21wdXRlIFEsIGRlZmluZWQgYXMgDQokJA0KUT1cc3VtX3tpPTF9XntrfSBXX3tpfVxsZWZ0KFlfe2l9LU1ccmlnaHQpXnsyfQ0KJCQNCndoZXJlIFdpIGlzIHRoZSBzdHVkeSB3ZWlnaHQgKDEvVmkpLCBZaSBpcyB0aGUgc3R1ZHkgZWZmZWN0IHNpemUsIGFuZCBNIGlzIHRoZSBzdW1tYXJ5IGVmZmVjdCBhbmQgayBpcyB0aGUgbnVtYmVyIG9mIHN0dWRpZXMuIEluIHdvcmRzLCB3ZSBjb21wdXRlIHRoZSBkZXZpYXRpb24gb2YgZWFjaCBlZmZlY3Qgc2l6ZSBmcm9tIHRoZSBtZWFuLCBzcXVhcmUgaXQsIHdlaWdodCB0aGlzIGJ5IHRoZSBpbnZlcnNlLXZhcmlhbmNlIGZvciB0aGF0IHN0dWR5LCBhbmQgc3VtIHRoZXNlIHZhbHVlcyBvdmVyIGFsbCBzdHVkaWVzIHRvIHlpZWxkIHRoZSB3ZWlnaHRlZCBzdW0gb2Ygc3F1YXJlcyAoV1NTKSwgb3IgUS4NCg0KVGhlIHNhbWUgZm9ybXVsYSBjYW4gYmUgd3JpdHRlbiBhcw0KJCQNClE9XHN1bV97aT0xfV57a31cbGVmdChcZnJhY3tZX3tpfS1NfXtTX3tpfX1ccmlnaHQpXnsyfQ0KJCQNCg0KdG8gaGlnaGxpZ2h0IHRoZSBmYWN0IHRoYXQgUSBpcyBhIHN0YW5kYXJkaXplZCBtZWFzdXJlLCB3aGljaCBtZWFucyB0aGF0IGl0IGlzIG5vdCBhZmZlY3RlZCBieSB0aGUgbWV0cmljIG9mIHRoZSBlZmZlY3Qgc2l6ZSBpbmRleC4gVGhlIGFuYWxvZ3kgd291bGQgYmUgdG8gdGhlIHN0YW5kYXJkaXplZCBtZWFuIGRpZmZlcmVuY2UgZCwgd2hlcmUgdGhlIG1lYW4gZGlmZmVyZW5jZSBpcyBkaXZpZGVkIGJ5IHRoZSB3aXRoaW4tc3R1ZHkgc3RhbmRhcmQgZGV2aWF0aW9uLg0KDQpGaW5hbGx5LCBhbiBlcXVpdmFsZW50IGZvcm11bGEsIHVzZWZ1bCBmb3IgY29tcHV0YXRpb25zLCBpcw0KJCQNClE9XHN1bV97aT0xfV57a30gV197aX0gWV97aX1eezJ9LVxmcmFje1xsZWZ0KFxzdW1fe2k9MX1ee2t9IFdfe2l9IFlfe2l9XHJpZ2h0KV57Mn19e1xzdW1fe2k9MX1ee2t9IFdfe2l9fS4NCiQkDQoNCg0KIyMgQm9yZW5zdGVpbiwgcC4gMTEwOg0KDQpUaGUgbmV4dCBzdGVwIGlzIHRvIGRldGVybWluZSB0aGUgZXhwZWN0ZWQgdmFsdWUgb2YgUSBvbiB0aGUgYXNzdW1wdGlvbiB0aGF0IGFsbCBzdHVkaWVzIHNoYXJlIGEgY29tbW9uIGVmZmVjdCBzaXplLCBhbmQgKGl0IGZvbGxvd3MpIGFsbCB0aGUgdmFyaWF0aW9uIGlzIGR1ZSB0byBzYW1wbGluZyBlcnJvciB3aXRoaW4gc3R1ZGllcy4gQmVjYXVzZSBRIGlzIGEgc3RhbmRhcmRpemVkIG1lYXN1cmUgdGhlIGV4cGVjdGVkIHZhbHVlIGRvZXMgbm90IGRlcGVuZCBvbiB0aGUgbWV0cmljIG9mIGVmZmVjdCBzaXplLCBidXQgaXMgc2ltcGx5IHRoZSBkZWdyZWVzIG9mIGZyZWVkb20gKGRmKSwgDQoNCiQkDQpkZiA9IGstMSwNCiQkDQp3aGVyZSBrIGlzIHRoZSBudW1iZXIgb2Ygc3R1ZGllcy4NCg0KDQojIyBCb3JlbnN0ZWluLCBwLiAxMTE6DQoNCiQkDQpJXnsyfT1cbGVmdChRXnsyfS1kIGZccmlnaHQpIC8gUQ0KJCQNCg0KIyMgQm9yZW5zdGVpbiwgcC4gMTEyOg0KDQpbVF1vIGVzdGltYXRlIHdoYXQgcHJvcG9ydGlvbiBvZiB0aGUgb2JzZXJ2ZWQgdmFyaWFuY2UgcmVmbGVjdHMgcmVhbCBkaWZmZXJlbmNlcyBhbW9uZyBzdHVkaWVzIChyYXRoZXIgdGhhbiByYW5kb20gZXJyb3IpIHdlIHdpbGwgc3RhcnQgd2l0aCBRLCByZW1vdmUgdGhlIGRlcGVuZGVuY2Ugb24gdGhlIG51bWJlciBvZiBzdHVkaWVzLCBhbmQgZXhwcmVzcyB0aGUgcmVzdWx0IGFzIGEgcmF0aW8gKGNhbGxlZCAkSV4yJCkuDQoNCiMjIEJvcmVuc3RlaW4sIHAuIDExNzoNCg0KV2hhdCBwcm9wb3J0aW9uIG9mIHRoZSBvYnNlcnZlZCB2YXJpYW5jZSByZWZsZWN0cyByZWFsIGRpZmZlcmVuY2VzIGluIGVmZmVjdCBzaXplPw0KDQpIaWdnaW5zIGV0IGFsLiAoMjAwMykgcHJvcG9zZWQgdXNpbmcgYSBzdGF0aXN0aWMsICRJXjIkICwgdG8gcmVmbGVjdCB0aGlzIHByb3BvcnRpb24sIHRoYXQgY291bGQgc2VydmUgYXMgYSBraW5kIG9mIHNpZ25hbC10by1ub2lzZSByYXRpby4gSXQgaXMgY29tcHV0ZWQgYXMNCg0KJCQNCkleezJ9PVxsZWZ0KFxmcmFje1EtZCBmfXtRfVxyaWdodCkgXHRpbWVzIDEwMCBcJQ0KJCQNCg0KdGhhdCBpcywgdGhlIHJhdGlvIG9mIGV4Y2VzcyBkaXNwZXJzaW9uIHRvIHRvdGFsIGRpc3BlcnNpb24uIA0KDQoNCiMjIEJvcmVuc3RlaW4sIHAuIDExODoNCg0KJEleMiQgcmVmbGVjdHMgdGhlIGV4dGVudCBvZiBvdmVybGFwIG9mIGNvbmZpZGVuY2UgaW50ZXJ2YWxzLCB3aGljaCBpcyBub3QgZGVwZW5kZW50IG9uIHRoZSBhY3R1YWwgbG9jYXRpb24gb3Igc3ByZWFkIG9mIHRoZSB0cnVlIGVmZmVjdHMuIEFzIHN1Y2ggaXQgaXMgY29udmVuaWVudCB0byB2aWV3ICRJXjIkIGFzIGEgbWVhc3VyZSBvZiBpbmNvbnNpc3RlbmN5IGFjcm9zcyB0aGUgZmluZGluZ3Mgb2YgdGhlIHN0dWRpZXMsIGFuZCBub3QgYXMgYSBtZWFzdXJlIG9mIHRoZSByZWFsIHZhcmlhdGlvbiBhY3Jvc3MgdGhlIHVuZGVybHlpbmcgdHJ1ZSBlZmZlY3RzLiBUaGUgc2NhbGUgb2YgJEleMiQgaGFzIGEgcmFuZ2Ugb2YgMOKAkzEwMCUsIHJlZ2FyZGxlc3Mgb2YgdGhlIHNjYWxlIHVzZWQgZm9yIHRoZSBtZXRhYW5hbHlzaXMgaXRzZWxmLiBJdCBjYW4gYmUgaW50ZXJwcmV0ZWQgYXMgYSByYXRpbywgYW5kIGhhcyB0aGUgYWRkaXRpb25hbCBhZHZhbnRhZ2Ugb2YgYmVpbmcgYW5hbG9nb3VzIHRvIGluZGljZXMgdXNlZCBpbiBwc3ljaG9tZXRyaWNzICh3aGVyZSByZWxpYWJpbGl0eSBpcyB0aGUgcmF0aW8gb2YgdHJ1ZSB0byB0b3RhbCB2YXJpYW5jZSkgb3IgcmVncmVzc2lvbiAod2hlcmUgUjIgaXMgdGhlIHByb3BvcnRpb24gb2YgdGhlIHRvdGFsIHZhcmlhbmNlIHRoYXQgY2FuIGJlIGV4cGxhaW5lZCBieSB0aGUgY292YXJpYXRlcykuIEltcG9ydGFudGx5LCAkSV4yJCBpcyBub3QgZGlyZWN0bHkgYWZmZWN0ZWQgYnkgdGhlIG51bWJlciBvZiBzdHVkaWVzIGluIHRoZSBhbmFseXNpcy4NCg0KDQojIyBCb3JlbnN0ZWluLCBwLiAxMTk6DQoNCkhpZ2dpbnMgZXQgYWwuICgyMDAzKSBwcm92aWRlIHNvbWUgdGVudGF0aXZlIGJlbmNobWFya3MgZm9yICRJXjIkIC4gVGhleSBzdWdnZXN0IHRoYXQgdmFsdWVzIG9uIHRoZSBvcmRlciBvZiAyNSUsIDUwJSwgYW5kIDc1JSBtaWdodCBiZSBjb25zaWRlcmVkIGFzIGxvdywgbW9kZXJhdGUsIGFuZCBoaWdoLCByZXNwZWN0aXZlbHkuIFNvbWUgY29udGV4dCBmb3IgdGhlIGludGVycHJldGF0aW9uIG9mICRJXjIkIGlzIHByb3ZpZGVkIGJ5IGEgc3VydmV5IG9mIG1ldGEtYW5hbHlzZXMgb2YgY2xpbmljYWwgdHJpYWxzIGluIHRoZSBDb2NocmFuZSBEYXRhYmFzZSBvZiBTeXN0ZW1hdGljIFJldmlld3MsIHJlcG9ydGVkIGJ5IEhpZ2dpbnMgZXQgYWwuICgyMDAzKS4gVGhlIHZhbHVlIG9mICRJXjIkIHdhcyB6ZXJvIGZvciBhYm91dCBoYWxmIG9mIHRoZSBtZXRhLWFuYWx5c2VzLCBhbmQgd2FzIGRpc3RyaWJ1dGVkIGV2ZW5seSBiZXR3ZWVuIDAlIHRvIDEwMCUgZm9yIHRoZSBvdGhlciBoYWxmLiBJdCBpcyBsaWtlbHkgdGhhdCAkSV4yJCB3b3VsZCBiZSBkaXN0cmlidXRlZCBkaWZmZXJlbnRseSBpbiBtZXRhLWFuYWx5c2VzIG9mIG90aGVyIGZpZWxkcyBvciBvdGhlciBraW5kcyBvZiBzdHVkaWVzLg0K</div>
+<div id="rmd-source-code">LS0tDQp0aXRsZTogIlJlcG9ydCINCm91dHB1dDogaHRtbF9ub3RlYm9vaw0KLS0tDQoNCiMgV2hhdCBpcyAkSV4yJD8NCg0KKlRoZSBmaXJzdCBzdGVwIGluIHBhcnRpdGlvbmluZyB0aGUgdmFyaWF0aW9uIGlzIHRvIGNvbXB1dGUgUSwgZGVmaW5lZCBhcyogDQokJA0KUT1cc3VtX3tpPTF9XntrfSBXX3tpfVxsZWZ0KFlfe2l9LU1ccmlnaHQpXnsyfQ0KJCQNCip3aGVyZSBXaSBpcyB0aGUgc3R1ZHkgd2VpZ2h0ICgxL1ZpKSwgWWkgaXMgdGhlIHN0dWR5IGVmZmVjdCBzaXplLCBhbmQgTSBpcyB0aGUgc3VtbWFyeSBlZmZlY3QgYW5kIGsgaXMgdGhlIG51bWJlciBvZiBzdHVkaWVzLiBJbiB3b3Jkcywgd2UgY29tcHV0ZSB0aGUgZGV2aWF0aW9uIG9mIGVhY2ggZWZmZWN0IHNpemUgZnJvbSB0aGUgbWVhbiwgc3F1YXJlIGl0LCB3ZWlnaHQgdGhpcyBieSB0aGUgaW52ZXJzZS12YXJpYW5jZSBmb3IgdGhhdCBzdHVkeSwgYW5kIHN1bSB0aGVzZSB2YWx1ZXMgb3ZlciBhbGwgc3R1ZGllcyB0byB5aWVsZCB0aGUgd2VpZ2h0ZWQgc3VtIG9mIHNxdWFyZXMgKFdTUyksIG9yIFEuIFRoZSBzYW1lIGZvcm11bGEgY2FuIGJlIHdyaXR0ZW4gYXMqDQokJA0KUT1cc3VtX3tpPTF9XntrfVxsZWZ0KFxmcmFje1lfe2l9LU19e1Nfe2l9fVxyaWdodCleezJ9DQokJA0KDQoqdG8gaGlnaGxpZ2h0IHRoZSBmYWN0IHRoYXQgUSBpcyBhIHN0YW5kYXJkaXplZCBtZWFzdXJlLCB3aGljaCBtZWFucyB0aGF0IGl0IGlzIG5vdCBhZmZlY3RlZCBieSB0aGUgbWV0cmljIG9mIHRoZSBlZmZlY3Qgc2l6ZSBpbmRleC4gVGhlIGFuYWxvZ3kgd291bGQgYmUgdG8gdGhlIHN0YW5kYXJkaXplZCBtZWFuIGRpZmZlcmVuY2UgZCwgd2hlcmUgdGhlIG1lYW4gZGlmZmVyZW5jZSBpcyBkaXZpZGVkIGJ5IHRoZSB3aXRoaW4tc3R1ZHkgc3RhbmRhcmQgZGV2aWF0aW9uLiBGaW5hbGx5LCBhbiBlcXVpdmFsZW50IGZvcm11bGEsIHVzZWZ1bCBmb3IgY29tcHV0YXRpb25zLCBpcyoNCiQkDQpRPVxzdW1fe2k9MX1ee2t9IFdfe2l9IFlfe2l9XnsyfS1cZnJhY3tcbGVmdChcc3VtX3tpPTF9XntrfSBXX3tpfSBZX3tpfVxyaWdodCleezJ9fXtcc3VtX3tpPTF9XntrfSBXX3tpfX0uDQokJA0KKEJvcmVuc3RlaW4sIHAuIDEwOSkNCg0KDQoqVGhlIG5leHQgc3RlcCBpcyB0byBkZXRlcm1pbmUgdGhlIGV4cGVjdGVkIHZhbHVlIG9mIFEgb24gdGhlIGFzc3VtcHRpb24gdGhhdCBhbGwgc3R1ZGllcyBzaGFyZSBhIGNvbW1vbiBlZmZlY3Qgc2l6ZSwgYW5kIChpdCBmb2xsb3dzKSBhbGwgdGhlIHZhcmlhdGlvbiBpcyBkdWUgdG8gc2FtcGxpbmcgZXJyb3Igd2l0aGluIHN0dWRpZXMuIEJlY2F1c2UgUSBpcyBhIHN0YW5kYXJkaXplZCBtZWFzdXJlIHRoZSBleHBlY3RlZCB2YWx1ZSBkb2VzIG5vdCBkZXBlbmQgb24gdGhlIG1ldHJpYyBvZiBlZmZlY3Qgc2l6ZSwgYnV0IGlzIHNpbXBseSB0aGUgZGVncmVlcyBvZiBmcmVlZG9tIChkZiksICoNCg0KJCQNCmRmID0gay0xLA0KJCQNCip3aGVyZSBrIGlzIHRoZSBudW1iZXIgb2Ygc3R1ZGllcy4qIChCb3JlbnN0ZWluLCBwLiAxMTApDQoNCg0KKltUXW8gZXN0aW1hdGUgd2hhdCBwcm9wb3J0aW9uIG9mIHRoZSBvYnNlcnZlZCB2YXJpYW5jZSByZWZsZWN0cyByZWFsIGRpZmZlcmVuY2VzIGFtb25nIHN0dWRpZXMgKHJhdGhlciB0aGFuIHJhbmRvbSBlcnJvcikgd2Ugd2lsbCBzdGFydCB3aXRoIFEsIHJlbW92ZSB0aGUgZGVwZW5kZW5jZSBvbiB0aGUgbnVtYmVyIG9mIHN0dWRpZXMsIGFuZCBleHByZXNzIHRoZSByZXN1bHQgYXMgYSByYXRpbyAoY2FsbGVkICRJXjIkKS4qIChCb3JlbnN0ZWluLCBwLiAxMTIpDQoNCipXaGF0IHByb3BvcnRpb24gb2YgdGhlIG9ic2VydmVkIHZhcmlhbmNlIHJlZmxlY3RzIHJlYWwgZGlmZmVyZW5jZXMgaW4gZWZmZWN0IHNpemU/IEhpZ2dpbnMgZXQgYWwuICgyMDAzKSBwcm9wb3NlZCB1c2luZyBhIHN0YXRpc3RpYywgJEleMiQgLCB0byByZWZsZWN0IHRoaXMgcHJvcG9ydGlvbiwgdGhhdCBjb3VsZCBzZXJ2ZSBhcyBhIGtpbmQgb2Ygc2lnbmFsLXRvLW5vaXNlIHJhdGlvLiBJdCBpcyBjb21wdXRlZCBhcyoNCiQkDQpJXnsyfT1cbGVmdChcZnJhY3tRLWQgZn17UX1ccmlnaHQpIFx0aW1lcyAxMDAgXCUNCiQkDQoqdGhhdCBpcywgdGhlIHJhdGlvIG9mIGV4Y2VzcyBkaXNwZXJzaW9uIHRvIHRvdGFsIGRpc3BlcnNpb24uKiAoQm9yZW5zdGVpbiwgcC4gMTE3KQ0KDQoNCg0KKiRJXjIkIHJlZmxlY3RzIHRoZSBleHRlbnQgb2Ygb3ZlcmxhcCBvZiBjb25maWRlbmNlIGludGVydmFscywgd2hpY2ggaXMgbm90IGRlcGVuZGVudCBvbiB0aGUgYWN0dWFsIGxvY2F0aW9uIG9yIHNwcmVhZCBvZiB0aGUgdHJ1ZSBlZmZlY3RzLiBBcyBzdWNoIGl0IGlzIGNvbnZlbmllbnQgdG8gdmlldyAkSV4yJCBhcyBhIG1lYXN1cmUgb2YgaW5jb25zaXN0ZW5jeSBhY3Jvc3MgdGhlIGZpbmRpbmdzIG9mIHRoZSBzdHVkaWVzLCBhbmQgbm90IGFzIGEgbWVhc3VyZSBvZiB0aGUgcmVhbCB2YXJpYXRpb24gYWNyb3NzIHRoZSB1bmRlcmx5aW5nIHRydWUgZWZmZWN0cy4gVGhlIHNjYWxlIG9mICRJXjIkIGhhcyBhIHJhbmdlIG9mIDDigJMxMDAlLCByZWdhcmRsZXNzIG9mIHRoZSBzY2FsZSB1c2VkIGZvciB0aGUgbWV0YWFuYWx5c2lzIGl0c2VsZi4gSXQgY2FuIGJlIGludGVycHJldGVkIGFzIGEgcmF0aW8sIGFuZCBoYXMgdGhlIGFkZGl0aW9uYWwgYWR2YW50YWdlIG9mIGJlaW5nIGFuYWxvZ291cyB0byBpbmRpY2VzIHVzZWQgaW4gcHN5Y2hvbWV0cmljcyAod2hlcmUgcmVsaWFiaWxpdHkgaXMgdGhlIHJhdGlvIG9mIHRydWUgdG8gdG90YWwgdmFyaWFuY2UpIG9yIHJlZ3Jlc3Npb24gKHdoZXJlIFIyIGlzIHRoZSBwcm9wb3J0aW9uIG9mIHRoZSB0b3RhbCB2YXJpYW5jZSB0aGF0IGNhbiBiZSBleHBsYWluZWQgYnkgdGhlIGNvdmFyaWF0ZXMpLiBJbXBvcnRhbnRseSwgJEleMiQgaXMgbm90IGRpcmVjdGx5IGFmZmVjdGVkIGJ5IHRoZSBudW1iZXIgb2Ygc3R1ZGllcyBpbiB0aGUgYW5hbHlzaXMuKiAoQm9yZW5zdGVpbiwgcC4gMTE4KQ0KDQouLi4NCg0KKkhpZ2dpbnMgZXQgYWwuICgyMDAzKSBwcm92aWRlIHNvbWUgdGVudGF0aXZlIGJlbmNobWFya3MgZm9yICRJXjIkIC4gVGhleSBzdWdnZXN0IHRoYXQgdmFsdWVzIG9uIHRoZSBvcmRlciBvZiAyNSUsIDUwJSwgYW5kIDc1JSBtaWdodCBiZSBjb25zaWRlcmVkIGFzIGxvdywgbW9kZXJhdGUsIGFuZCBoaWdoLCByZXNwZWN0aXZlbHkuIFNvbWUgY29udGV4dCBmb3IgdGhlIGludGVycHJldGF0aW9uIG9mICRJXjIkIGlzIHByb3ZpZGVkIGJ5IGEgc3VydmV5IG9mIG1ldGEtYW5hbHlzZXMgb2YgY2xpbmljYWwgdHJpYWxzIGluIHRoZSBDb2NocmFuZSBEYXRhYmFzZSBvZiBTeXN0ZW1hdGljIFJldmlld3MsIHJlcG9ydGVkIGJ5IEhpZ2dpbnMgZXQgYWwuICgyMDAzKS4gVGhlIHZhbHVlIG9mICRJXjIkIHdhcyB6ZXJvIGZvciBhYm91dCBoYWxmIG9mIHRoZSBtZXRhLWFuYWx5c2VzLCBhbmQgd2FzIGRpc3RyaWJ1dGVkIGV2ZW5seSBiZXR3ZWVuIDAlIHRvIDEwMCUgZm9yIHRoZSBvdGhlciBoYWxmLiBJdCBpcyBsaWtlbHkgdGhhdCAkSV4yJCB3b3VsZCBiZSBkaXN0cmlidXRlZCBkaWZmZXJlbnRseSBpbiBtZXRhLWFuYWx5c2VzIG9mIG90aGVyIGZpZWxkcyBvciBvdGhlciBraW5kcyBvZiBzdHVkaWVzLiogKEJvcmVuc3RlaW4sIHAuIDExOSkNCg0KDQojIENvbXVwdGluZyAkSV4yJA0KDQpDcmVhdGUgc29tZSBkYXRhIHRvIHRlc3QgZXF1YXRpb25zOg0KYGBge3J9DQojIFNpbXVsYXRlIHNvbWUgZGF0YQ0KRVMgPC0gcm5vcm0obiA9IDUsIG1lYW4gPSAuNSwgc2QgPSAwLjEpICNlZmZlY3Qgc2l6ZSBwZXIgc3R1ZHkNClNFIDwtIHJ1bmlmKG4gPSA1LCBtaW4gPSAwLCBtYXggPSAwLjA1KSAjc3RhbmRhcmQgZXJyb3IgcGVyIHN0dWR5DQpuIDwtIDEwMA0KZGF0YSA8LSBhcy5kYXRhLmZyYW1lKGNiaW5kKEVTLCBTRSkpICNjb21iaW5lIGludG8gZGF0YWZyYW1lDQoNCiMgT2J0YWluIG9iamVjdHMgbmVjZXNzYXJ5IGZvciBjb21wdXRpbmcgSV4yOg0KWSA8LSBkYXRhJEVTDQprIDwtIGxlbmd0aChZKSAjZXh0cmFjdCBuci4gb2Ygc3R1ZGllcw0KZGYgPC0gay0xICNjYWxjdWxhdGUgZGVncmVlcyBvZiBmcmVlZG9tIA0KViA8LSAoZGF0YSRTRSpzcXJ0KG4pKV4yDQpXIDwtIDEvViAjY3JlYXRlIHN0dWR5IHdlaWdodHMNCk0gPC0gbWVhbihZKQ0KDQojIENvbXB1dGUgUToNClFhIDwtIHN1bShXKihZLU0pXjIpICNmaXJzdCBlcXVhdGlvbiBpbiBCb3JlbnN0ZWluDQpRaSA8LSBtYXRyaXgoTkEsIGssIDEpICNzYW1lIHdpdGggZm9yLWxvb3AgdG8gY2hlY2sgY29tcHV0YXRpb25zDQpmb3IgKGkgaW4gMTprKSB7DQogIFFpW2ldIDwtIFdbaV0qKChZW2ldLU0pXjIpDQp9DQpRYiA8LSBzdW0oUWkpDQoNClFjIDwtIHN1bShXKlleMiktKChzdW0oVypZKV4yKS9zdW0oVykpICN0aGlyZCBCb3JlbnN0ZWluIGVxdWF0aW9uDQoNCiMgQ29tcHV0ZSBJXjI6DQpRIDwtIFFjICNjaG9vc2Ugd2hpY2ggUSBjb21wdXRhdGlvbiB0byB1c2UNCkkyIDwtIChRLWRmKS9RICoxMDAgI2dldCBJXjINCg0KDQpgYGANCg0KVHJ5IHdpdGggcmVhbCBkYXRhOg0KYGBge3J9DQpkYXRhIDwtIHJlYWQuY3N2MigiQ29uZGl0aW9uaW5nLmNzdiIpICNsb2FkIGRhdGEgaW50byBlbnZpcm9ubWVudA0KWSA8LSBkYXRhJENhbGN1bGF0ZWQuZWZmZWN0LnNpemUgI2V4dHJhY3QgZWZmZWN0IHNpemUsIFNFIGFuZCBuIHBlciBzdHVkeQ0KU0UgPC0gZGF0YSRTRS5yb3VuZGVkIA0KbiA8LSBkYXRhJFNhbXBsZS5zaXplDQoNCmsgPC0gbGVuZ3RoKFkpICNleHRyYWN0IG5yLiBvZiBzdHVkaWVzDQpkZiA8LSBrLTEgI2NhbGN1bGF0ZSBkZWdyZWVzIG9mIGZyZWVkb20gDQoNClNEIDwtIFNFKnNxcnQobikgI2NhbGN1bGF0ZSBTRCBmcm9tIFNFDQpXIDwtIDEvKFNEXjIpICNjcmVhdGUgc3R1ZHkgd2VpZ2h0cyAoaW52ZXJzZSBvZiB2YXJpYW5jZSkNCk0gPC0gbWVhbihZKQ0KDQojIENvbXB1dGUgUToNClFhIDwtIHN1bShXKihZLU0pXjIpICNmaXJzdCBlcXVhdGlvbiBpbiBCb3JlbnN0ZWluDQpRaSA8LSBtYXRyaXgoTkEsIGssIDEpICNzYW1lIHdpdGggZm9yLWxvb3AgdG8gY2hlY2sgY29tcHV0YXRpb25zDQpmb3IgKGkgaW4gMTprKSB7DQogIFFpW2ldIDwtIFdbaV0qKChZW2ldLU0pXjIpDQp9DQpRYiA8LSBzdW0oUWkpDQoNClFjIDwtIHN1bShXKlleMiktKChzdW0oVypZKV4yKS9zdW0oVykpICN0aGlyZCBCb3JlbnN0ZWluIGVxdWF0aW9uDQoNCiMgQ29tcHV0ZSBJXjI6DQpRIDwtIFFjICNjaG9vc2Ugd2hpY2ggUSBjb21wdXRhdGlvbiB0byB1c2UNCkkyIDwtIChRLWRmKS9RKjEwMCAjZ2V0IEleMg0KDQojIENoZWNrIHdpdGggcGFja2FnZToNCm1ldGFmb3I6OnJtYS51bmkoeWkgPSBZLCB2aSA9IDEvVykNCg0KIyBXZSBzZWUgdGhhdCBRYyB5aWVsZHMgYSBRIHZhbHVlIHN0YXQgaXMgZXF1YWwgdG8gdGhlIG1ldGFmb3IgUSBlc3RpbWF0ZQ0KYGBgDQoNClNvdXJjZSBUb00gZGF0YTogaHR0cHM6Ly9wc3lhcnhpdi5jb20vOTd5angvLCBzb3VyY2UgY29uZGl0aW9uaW5nIGRhdGE6IGh0dHBzOi8vcHN5YXJ4aXYuY29tL3F6NXN0LyBhbmQgaHR0cHM6Ly9vc2YuaW8vZHk0YWMvZmlsZXMvP3ZpZXdfb25seT1hZWNjY2FmZDNkZDQ0ZmVmYTE3Y2Y4N2FlYjhmOTJhYy4NCg0KDQo=</div>
 
 
 
