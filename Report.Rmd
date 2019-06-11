@@ -3,6 +3,15 @@ title: "Report"
 output: html_notebook
 ---
 
+# Questions for Daniel
+
+- Which way of calculating $I^2$ to use?
+
+- Can I access the 'back-end' of TOSTER?
+
+- 
+
+
 # What is $I^2$?
 
 *The first step in partitioning the variation is to compute Q, defined as* 
@@ -110,11 +119,50 @@ Q <- Qc #choose which Q computation to use
 I2 <- (Q-df)/Q*100 #get I^2
 
 # Check with package:
-metafor::rma.uni(yi = Y, vi = 1/W)
+out <- metafor::rma.uni(yi = Y, vi = 1/W)
 
 # We see that Qc yields a Q value stat is equal to the metafor Q estimate
+# However, the I^2 estimate is not equal.
+
 ```
 
 Source ToM data: https://psyarxiv.com/97yjx/, source conditioning data: https://psyarxiv.com/qz5st/ and https://osf.io/dy4ac/files/?view_only=aecccafd3dd44fefa17cf87aeb8f92ac.
 
+```{r}
+# Create function for Q:
+
+Q_stat <- function(yi, wi){ 
+  # This function yields the Q statistic to evaluate heterogeneity in meta-analyses.
+  # As input it needs a vector with estimated effect sizes per study, and study weights 
+  # (inverse of the variance).
+  # The output of the function is a list of two objects: the estimated Q statistic, and 
+  # ...
+  
+  # Specify predefined elements:
+  k <- length(Y) #extract nr. of studies
+  df <- k-1 #calculate degrees of freedom 
+
+  # Calculate Q:
+  Q <- sum(wi*yi^2)-((sum(wi*yi)^2)/sum(wi)) #equation Borenstein p. 109
+  
+  # Calculate I^2:
+  I2 <- 100 * ((Q-df)/Q)
+  
+  # Create objects for output:
+  
+  
+  # Put everything into list to print:
+  output <- list(
+    "Q" = Q,
+    "I2" = I2
+  )
+  
+  return(output)
+}
+
+# Test function
+
+Q_out <- Q_stat(yi = Y, wi = W)
+
+```
 
