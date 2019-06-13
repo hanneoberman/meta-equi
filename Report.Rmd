@@ -59,17 +59,17 @@ $$
 
 Create some data to test equations:
 ```{r}
-# Simulate some data
+# Simulate data:
 ES <- rnorm(n = 5, mean = .5, sd = .5) #effect size per study
 SE <- runif(n = 5, min = 0, max = 0.05) #standard error per study
 n <- 100
-data <- as.data.frame(cbind(ES, SE)) #combine into dataframe
+data_sim <- as.data.frame(cbind(ES, SE)) #combine into dataframe
 
 # Obtain objects necessary for computing I^2:
-Y <- data$ES
+Y <- data_sim$ES
 k <- length(Y) #extract nr. of studies
 df <- k-1 #calculate degrees of freedom 
-V <- (data$SE*sqrt(n))^2
+V <- (data_sim$SE*sqrt(n))^2
 W <- 1/V #create study weights
 M <- mean(Y)
 W_alt <- rnorm(n = 5, mean = 100, sd = 50)
@@ -89,7 +89,7 @@ Q <- Qc #choose which Q computation to use
 I2 <- (Q-df)/Q *100 #get I^2
 
 # Use function (see below):
-sim_out <- Q_stat(yi = Y, wi = W)
+# sim_out <- Q_stat(yi = Y, wi = W)
 
 # Check with package:
 sim <- metafor::rma.uni(yi = Y, vi = 1/W)
@@ -173,7 +173,7 @@ Q_out <- Q_stat(yi = Y, wi = W)
 ```
 
 
-Now use the TOSTER format:
+Now use the TOSTER format, see https://www.rdocumentation.org/packages/TOSTER/versions/0.3.4:
 
 ```{r}
 library('TOSTER')
@@ -203,6 +203,7 @@ TOSTI<-function(ES,var,se,low_eqbound_d, high_eqbound_d, alpha #, plot = TRUE, v
   df <- length(ES) - 1 #degrees of freedom = nr. of studies minus one
   W <- 1/(se^2) #study weights are the inverse of the variance
   Q <- sum(W*ES^2)-((sum(W*ES)^2)/sum(W)) #equation Borenstein p. 109
+  p_Q <- pchisq(Q, df=df, lower.tail=FALSE)
   I2 <- 100 * ((Q-df)/Q) #equation Borenstein p. 117
 
   #######################################  
@@ -282,12 +283,12 @@ TOSTI<-function(ES,var,se,low_eqbound_d, high_eqbound_d, alpha #, plot = TRUE, v
 #   }
   
   # Return results in list()
-  invisible(list(I2=I2 #,TOST_Z1=Z1,TOST_p1=p1,TOST_Z2=Z2,TOST_p2=p2,alpha=alpha,low_eqbound_d=low_eqbound_d,high_eqbound_d=high_eqbound_d, LL_CI_TOST=LL90,UL_CI_TOST=UL90,LL_CI_ZTEST=LL95,UL_CI_ZTEST=UL95
+  invisible(list(Q=Q, p_Q=p_Q, I2=I2 #,TOST_Z1=Z1,TOST_p1=p1,TOST_Z2=Z2,TOST_p2=p2,alpha=alpha,low_eqbound_d=low_eqbound_d,high_eqbound_d=high_eqbound_d, LL_CI_TOST=LL90,UL_CI_TOST=UL90,LL_CI_ZTEST=LL95,UL_CI_ZTEST=UL95
                  ))
   }
 
 # Test whether function works:
-out <- TOSTI(ES = Y, var = 1/W, low_eqbound_d = 0, high_eqbound_d = 10)
+TOST_out <- TOSTI(ES = Y, var = 1/W, low_eqbound_d = 0, high_eqbound_d = 10)
 
 ```
 
@@ -331,6 +332,8 @@ $$
 *Any value ($I^2$ , lower limit or upper limit) that is computed as less than zero is set to zero.* 
 (Borenstein, p. 125).
 
+**check CI for Q!**
+
 
 So now include CI around $I^2$:
 
@@ -342,7 +345,7 @@ if (Q>df+1){
   B <- sqrt(1/(2*(df-1)*(1-(1/(3*(df-1)^2)))))
 }
 
-# Compute intermediates L and U
+# Compute intermediates L and U:
 alpha <- 0.05
 z_alpha <- qnorm(1-alpha/2)
 L <- exp(0.5*log(Q/df)-z_alpha*B)
@@ -355,6 +358,66 @@ UL <- 100* (U^2-1)/U^2
 # Set limit to zero for negative values:
 if (LL<0){LL <- 0}
 if (UL<0){UL <- 0}
+
+```
+
+
+# Equivalence
+
+For F tests, we ask the question "*can we reject the hypothesis that the total proportion of variance in Y attributable to X is greater than or equal to $\Delta$?*" (https://arxiv.org/pdf/1905.11875v1.pdf, p. 5). And we want to translate this to the $I^2$ statistic:
+
+$$
+H_{0} : 100 \% > I^2 \geq \Delta \\
+
+H_{1} : 0\% \leq I^2 < \Delta
+$$
+where $\Delta$ represents the SESOI in percentages. 
+
+However, we do not have a known distribution for $I^2$, so we use Q instead. Similar to the F-statistic non-inferiority test, a p-value for this distribution is obtained by inverting the one-sided CI around Q. But then we also need to specify $\Delta$ in units of Q.
+
+If $I^2 = 100*(Q-df)/Q$, then $I^2/100 = 1 - (df/Q)$, and $Q = -df/((I^2/100)-1) $, where $I^2/100 \neq 1$ and $df \neq 0$. In meta-analyses, there are at least 2 studies (k>1), so df (k-1) is never equal to zero. Alternatively written, $Q = -(100*df)/(I^2-100)$, where $I^2 \neq 100$.
+
+
+```{r}
+# Convert Delta to units of Q:
+Delta <- 10
+D_Q <- -(100*df)/(Delta-100)
+# pval = pchisq(Q,df,ncp=),lower.tail=TRUE)
+
+# Visually inspect the effect of the ncp:
+curve(dchisq(x, df=29), col='red', main = "Chi-Square Density Graph", from=0,to=60)
+xvec <- seq(7.5,60,length=101)
+pvec <- dchisq(xvec,df=29, ncp = D_Q-df)
+polygon(c(xvec,rev(xvec)),c(pvec,rep(0,length(pvec))), col=adjustcolor("black",alpha=0.3))
+
+# Look at CI of chi sq distr:
+mean(qchisq(c(.025,.975),df=df, ncp = D_Q, lower.tail=FALSE))
+
+
+```
+
+How to get the ncp for Q?
+
+*chi-square distribution with $k-1$ degrees of freedom and non-centrality parameter equal to*
+
+$$
+\lambda=\sum_{i=1}^{k} w_{i}\left(\theta_{i}-\overline{\theta}_{\bullet}\right)^{2}
+$$
+
+*where $\overline{\theta}_{\bullet}$ is the weighted mean of $\theta_1, \theta_2, ..., \theta_k$, and can be written as*
+
+$$
+\overline{\theta}_{\bullet}=\frac{\sum_{i=1}^{k} w_{i} \theta_{i}}{\sum_{i=1}^{k} w_{i}}.
+$$
+
+(Pigott, p. 57).
+
+Apply to current data:
+
+```{r}
+theta_dot <- sum(W*Y)/sum(W)
+lambda <- sum(W*(Y-theta_dot)^2)
+
 
 ```
 
